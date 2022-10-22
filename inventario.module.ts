@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ProductosComponent } from './productos/productos.component';
 import { InventarioServece } from './servece/inventario.service';
 import { InventarioComponent } from './inventario/inventario.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { InventarioComponent } from './inventario/inventario.component';
     InventarioComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ],
   providers:[
     InventarioServece

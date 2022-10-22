@@ -1,32 +1,35 @@
 <h1>Lista de Productos</h1>
-<section class="sec">
-  <div class="sec_padre">
-    <div class="sec_hijo" *ngFor="let inv of inventarios">
-      <h2>{{ inv.producto.nombre }}</h2>
-      <div><button>-1</button> <button>+1</button></div>
+<div class="row">
+  <div class="col-5">
+    <div class="">
+      <div class="container" *ngFor="let productoInventario of inventarioServece.inventario[inventarioServece.idSeleccionado].productos; let i = index">
+        <div class="row">
+          <div class="col">
+            <p>{{ productoInventario.producto.nombre }}</p>
+          </div>
+          <div class="col">
+            <button class="btn btn-outline-primary" (click)="cambiarCantidad(i, false)">-1</button>
+            <span>{{ productoInventario.cantidad }}</span>
+            <button class="btn btn-outline-danger" (click)="cambiarCantidad(i, true)">+1</button>
+          </div>
+        </div>
+        <hr>
+      </div>
     </div>
   </div>
+  <div class="col-7">
+    <div>
+      <div class="container">
+        <div class="row">
+          <div class="col-3" *ngFor="let productoInventario of inventarioServece.inventario[inventarioServece.idSeleccionado].productos">
+            <!-- <img src="{{ inv.producto.logotipo }}" class="img-fluid"/> -->
 
-  <div class="sec_two">
-    <div class="sec_hijo" *ngFor="let inv of inventarios">
-      <img src="{{ inv.producto.logotipo }}" />
-      <h2>21</h2>
+            <img src="{{ productoInventario.producto.logotipo }}" class="img-fluid"/>
+            <h2>X <span>{{ productoInventario.cantidad }}</span></h2>
+
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</section>
-
-<!--
-    <div class="columna" *ngFor="let prod of productos">
-        <img src="{{prod.img}}">
-        <p>{{prod.producto}}</p>
-        <p>{{prod.contador}}</p>
-    </div>
-
-   <button type="button" (click)="almacenar()" >nuevo inventario</button>
-
-   <div class="columna" *ngFor="let prod of productos">
-   <h1>{{prod.producto}}</h1>
-   <button (click)="acumular(base)">{{base}}</button>
-   <span>{{prod.contador}}</span>
-   <button (click)="acumular(-base)"> -{{base}}</button>
-</div> -->
+</div>

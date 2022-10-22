@@ -1,59 +1,40 @@
-import { Component, EventEmitter} from '@angular/core';
-import { Inventario } from '../interface/inventario.interface';
-import { InventarioServece } from '../servece/inventario.service';
-
+import { Component } from "@angular/core";
+import { FormControl, FormGroup } from "@angular/forms";
+import { Inventario } from "../interface/inventario.interface";
+import { InventarioServece } from "../servece/inventario.service";
 
 @Component({
-  selector: 'app-inventario',
-  templateUrl: './inventario.component.html',
-
+  selector: "app-inventario",
+  templateUrl: "./inventario.component.html",
 })
-
-
 export class InventarioComponent {
-
   i: number = 3;
+  myForm: FormGroup;
 
-  constructor(public InventarioServece: InventarioServece) {
-    this.inventarios = this.InventarioServece.inv
-  }
-  nu: Inventario[]=[]
-  inventarios: Inventario[] = []
-
-  nuevo: Inventario = {
-    id: 0,
-    producto: {
-      nombre: '',
-      logotipo: ''
-    }
+  constructor(public inventarioServece: InventarioServece) {
+    this.myForm = new FormGroup({
+      inventario: new FormControl(""),
+    });
+    this.myForm.controls["inventario"].valueChanges.subscribe((event) => {
+      console.log(event);
+      this.inventarioServece.seleccionarId(event);
+    });
+    this.agregrarInventario();
   }
 
-  Agregrani() {
-
-    let result = {
-      id: this.i++,
-      producto: {
-        nombre: 'lapiz',
-        logotipo: './assets/pencil-png.webp'
-      }
-    }
-
-    this.nuevo = result;
-
-    this.inventarios.push(this.nuevo)
-    console.log(this.inventarios)
-    this.almacenar()
+  agregrarInventario() {
+    const idnuevo = this.inventarioServece.crearInventario();
+    this.myForm.controls['inventario'].setValue(idnuevo);
   }
 
-  opc(event:Event){
-    console.log(event)
-    // this.nu = this.inventarios.filter((item)=>{
-    //   return item.id == inventario.id
-    // })
+  opc(event: Event) {
+    console.log(event);
+  }
+  cambiarInventario(event: any) {
+    console.log(event);
   }
 
   almacenar() {
-    localStorage.setItem(`${this.nuevo.id}`, JSON.stringify(this.inventarios))
+    // localStorage.setItem(`${this.nuevo.id}`, JSON.stringify(this.inventarios));
   }
 }
-
