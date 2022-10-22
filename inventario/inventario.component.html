@@ -1,0 +1,16 @@
+<select class="form-select">
+  <option selected>Seleccione inventario</option>
+  <option *ngFor="let inventario of inventarios" (select)="opc($event)">
+    <p>Inventario {{ inventario.id }}</p>
+  </option>
+</select>
+
+<select
+  ng-model="selectedName"
+  ng-options="inventario for inventario in inventarios"
+>
+
+</select>
+<app-productos></app-productos>
+
+<button (click)="Agregrani()">Nuevo Inventario</button>

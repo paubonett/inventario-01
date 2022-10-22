@@ -1,0 +1,32 @@
+<h1>Lista de Productos</h1>
+<section class="sec">
+  <div class="sec_padre">
+    <div class="sec_hijo" *ngFor="let inv of inventarios">
+      <h2>{{ inv.producto.nombre }}</h2>
+      <div><button>-1</button> <button>+1</button></div>
+    </div>
+  </div>
+
+  <div class="sec_two">
+    <div class="sec_hijo" *ngFor="let inv of inventarios">
+      <img src="{{ inv.producto.logotipo }}" />
+      <h2>21</h2>
+    </div>
+  </div>
+</section>
+
+<!--
+    <div class="columna" *ngFor="let prod of productos">
+        <img src="{{prod.img}}">
+        <p>{{prod.producto}}</p>
+        <p>{{prod.contador}}</p>
+    </div>
+
+   <button type="button" (click)="almacenar()" >nuevo inventario</button>
+
+   <div class="columna" *ngFor="let prod of productos">
+   <h1>{{prod.producto}}</h1>
+   <button (click)="acumular(base)">{{base}}</button>
+   <span>{{prod.contador}}</span>
+   <button (click)="acumular(-base)"> -{{base}}</button>
+</div> -->
